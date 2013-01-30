@@ -16,6 +16,6 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^$',             direct_to_template, {'template': 'login.html'}),
-    url(r'^partidas/$', direct_to_template, {'template': 'partidas.html'}),
+    url(r'^$', direct_to_template, {'template': 'login.html'}),
+    url(r'^partidas/$', include('partidas.urls')),
 )
