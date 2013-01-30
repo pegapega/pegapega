@@ -36,3 +36,4 @@ nosetests.xml
 
 .DS_Store
 settings_local.py
+www/
