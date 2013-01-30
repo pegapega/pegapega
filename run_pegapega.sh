@@ -11,5 +11,6 @@ set -e
   # export NEW_RELIC_CONFIG_FILE
   # exec newrelic-admin run-program gunicorn_django -w $NUM_WORKERS \
   exec gunicorn -w $NUM_WORKERS \
+    --bind 127.0.0.1:9090 \
     --user=$USER --group=$GROUP --log-level=error \
     --log-file=$LOGFILE 2>>$LOGFILE pegapega.wsgi:application
