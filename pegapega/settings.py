@@ -2,9 +2,9 @@
 import os
 import site
 
-path = lambda *a: os.path.join(os.path.dirname(os.path.abspath(__file__)), *a)
+cwd = lambda *a: os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', *a)
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -60,7 +60,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = cwd('static')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -71,6 +71,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    cwd('www'),
 )
 
 # List of finder classes that know how to find static files in
@@ -110,7 +111,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    path('templates'),
+    cwd('templates'),
 )
 
 INSTALLED_APPS = (
@@ -125,7 +126,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'pegapega',
-    'pegapega.apps.accounts',
+    'accounts',
     'partidas',
 )
 
@@ -164,12 +165,6 @@ AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 LOGIN_URL = '/accounts/login/'
 LOGOUT_URL = '/accounts/logout/'
 LOGIN_REDIRECT_URL = '/partidas/'
-
-# FACEBOOK API
-FACEBOOK_APP_ID = 'XXXXXXXX'
-FACEBOOK_APP_SECRET = 'XXXXX'
-# Facebook common part
-FACEBOOK_SCOPE = 'email,read_friendlists'
 
 try:
     from settings_local import *

@@ -1,2 +1,3 @@
 Fabric>=1.5
 Django>=1.4
+gunicorn>=0.17.2

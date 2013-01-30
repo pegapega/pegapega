@@ -18,4 +18,5 @@ urlpatterns = patterns('',
 
     url(r'^$', direct_to_template, {'template': 'login.html'}),
     url(r'^partidas/$', include('partidas.urls')),
+    url(r'^accounts/', include('accounts.urls')),
 )
