@@ -2,7 +2,8 @@
 import os
 import site
 
-cwd = lambda *a: os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', *a)
+cwd = lambda path: os.path.join(os.path.dirname(
+                                        os.path.abspath(__file__)), '..', path)
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -125,6 +126,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'south',
     'pegapega',
     'accounts',
     'partidas',
