@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>
+            Camera API
+        </title>
+    </head>
+
+    <body>
+
+        <button id="pick-image">Pick image</button>
+        <div id="image-presenter"></div>
+
+        <script>
+        // WebActivities
+        var pickImage = document.querySelector("#pick-image");
+        if (pickImage) {
+            pickImage.onclick = function () {
+                 var pick = new MozActivity({
+                     name: "pick",
+                     data: {
+                         type: ["image/png", "image/jpg", "image/jpeg"]
+ }
+                 });
+
+                pick.onsuccess = function () { 
+                    var img = document.createElement("img");
+                    img.src = window.URL.createObjectURL(this.result.blob);
+                    var imagePresenter = document.querySelector("#image-presenter");
+                    imagePresenter.appendChild(img);
+                    imagePresenter.style.display = "block";
+                };
+
+                pick.onerror = function () { 
+                    alert("Can't view the image!");
+                };
+            }
+        }
+
+        </script>
+
+    </body>
+
+</html>
