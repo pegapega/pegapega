@@ -1,0 +1,79 @@
+[
+  {
+    "pk": 1, 
+    "model": "partidas.partida", 
+    "fields": {
+      "nome": "Mozilla Br"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "partidas.partida", 
+    "fields": {
+      "nome": "Campus Party"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "partidas.partida", 
+    "fields": {
+      "nome": "Sofa Party"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "partidas.jogandopartida", 
+    "fields": {
+      "user": 1, 
+      "partida": 1
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "partidas.jogandopartida", 
+    "fields": {
+      "user": 2, 
+      "partida": 1
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "partidas.jogandopartida", 
+    "fields": {
+      "user": 3, 
+      "partida": 1
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "partidas.jogandopartida", 
+    "fields": {
+      "user": 3, 
+      "partida": 2
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "partidas.jogandopartida", 
+    "fields": {
+      "user": 2, 
+      "partida": 2
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "partidas.jogandopartida", 
+    "fields": {
+      "user": 2, 
+      "partida": 3
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "partidas.jogandopartida", 
+    "fields": {
+      "user": 1, 
+      "partida": 3
+    }
+  }
+]

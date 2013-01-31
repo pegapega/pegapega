@@ -1,0 +1,56 @@
+[
+  {
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "zuardi", 
+      "first_name": "Fabricio", 
+      "last_name": "Zuardi", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2013-01-31T00:13:14Z", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "pbkdf2_sha256$10000$lIGx4WcaqmHM$EkaG2Q8OXOVITIouUU9m7SGfaeqMDj8OfkFyNVPN5Ac=", 
+      "email": "", 
+      "date_joined": "2013-01-31T00:13:14Z"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "armando", 
+      "first_name": "Armando", 
+      "last_name": "Neto", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2013-01-31T00:12:39Z", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "pbkdf2_sha256$10000$2d13mUdOv9f0$WKMVTjg1dJ7P+ComB9OJMeKdb9Owfu53pSe0I+z80jA=", 
+      "email": "", 
+      "date_joined": "2013-01-31T00:12:39Z"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "seocam", 
+      "first_name": "Sergio", 
+      "last_name": "Oliveira", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2013-01-30T23:56:23Z", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "pbkdf2_sha256$10000$clybQ28juKTS$E6ZI3SQw9JAFLVJAsAlayXk7W+N2HGwP1UJ+NjRP1ik=", 
+      "email": "seocam@seocam.com", 
+      "date_joined": "2013-01-30T23:41:47Z"
+    }
+  }
+]
