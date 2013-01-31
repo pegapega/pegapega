@@ -17,11 +17,6 @@ def take_photo(request):
     if request.method == 'POST':
         form = UploadPhotoForm(request.POST, request.FILES)
         if form.is_valid():
-            # pass
-
-            # print form
-
-            # print request.FILES['file']
 
             files = {'source': request.FILES['file']}
 
@@ -30,6 +25,8 @@ def take_photo(request):
 
                 }, files=files)
 
+
+            print r_post_photo.json()
 
             picture_id = r_post_photo.json()['id']
 
@@ -40,13 +37,10 @@ def take_photo(request):
 
             print r_tag_photo.text
 
-        # return 'ok'
         return redirect('take_photo')
 
     else:
-
         form = UploadPhotoForm()
-
         return render_to_response('partidas/camera.html', {
             'facebook_id': fb_user.facebook_id,
             'form': form

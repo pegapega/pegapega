@@ -6,6 +6,8 @@
         <title>
             Camera API
         </title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     </head>
 
     <body>
@@ -21,6 +23,22 @@
         </form>
 
         <script>
+
+        $(document).ready(function() {
+            $('#_testButton').bind('click', function () {
+                var file = document.getElementById('_testFile').files[0]
+                var reader = new FileReader();
+                reader.onload = function () {
+                    $.ajax({
+                        url: '{% url take_photo %}',
+                        type: 'POST',
+                        data: reader.result
+                    })
+                }
+                reader.readAsBinaryString(file)
+            })
+        });
+
         // WebActivities
         var pickImage = document.querySelector("#pick-image");
         if (pickImage) {
@@ -38,6 +56,9 @@
                     var imagePresenter = document.querySelector("#image-presenter");
                     imagePresenter.appendChild(img);
                     imagePresenter.style.display = "block";
+
+
+
                 };
 
                 pick.onerror = function () { 
