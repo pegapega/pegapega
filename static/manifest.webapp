@@ -1,0 +1,15 @@
+{
+  "name": "Pega Pega",
+  "description": "A diversão do Pega Pega no seu bolso.",
+  "launch_path": "/",
+  "icons": {
+    "128": "/img/icon-128.png"
+  },
+  "developer": {
+    "name": "Pega Pega Org",
+    "url": "https://github.com/pegapega"
+  },
+  "default_locale": "pt-BR",
+  "fullscreen": "true",
+
+}
