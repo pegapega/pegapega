@@ -161,6 +161,11 @@ LOGGING = {
     }
 }
 
+AUTHENTICATION_BACKENDS = (
+    'accounts.backend.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend'
+)
+
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
 # Default login redirects urls
