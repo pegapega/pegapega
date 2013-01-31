@@ -1,6 +1,6 @@
 import cgi
 import urllib
-import simplejson as json
+import json
 
 from django.conf import settings
 from django.contrib.auth.models import User, AnonymousUser
@@ -9,8 +9,7 @@ from django.core.urlresolvers import reverse
 
 from models import UserProfile
 
-
-class FacebookBackend:
+class FacebookBackend(object):
     def authenticate(self, token=None, request=None):
         """ Reads in a Facebook code and asks Facebook if it's valid and what
         user it points to. """
