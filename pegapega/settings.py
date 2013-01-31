@@ -173,6 +173,9 @@ LOGIN_URL = '/accounts/login/'
 LOGOUT_URL = '/accounts/logout/'
 LOGIN_REDIRECT_URL = '/partidas/'
 
+# Facebook common part
+FACEBOOK_SCOPE = 'email,read_friendlists,publish_stream'
+
 try:
     from settings_local import *
 except ImportError:
