@@ -1,51 +1,54 @@
 from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponse
 
 from accounts.models import UserProfile
+from forms import UploadPhotoForm
 
 import requests
 
+# @csrf_protect
 @login_required
 def take_photo(request):
-
     fb_user = UserProfile.objects.get(user=request.user)
 
     if request.method == 'POST':
-        files = {'source': open('/Users/neto/Pictures/xx.jpg', 'r')}
+        form = UploadPhotoForm(request.POST, request.FILES)
+        if form.is_valid():
+            # pass
+
+            # print form
+
+            # print request.FILES['file']
+
+            files = {'source': request.FILES['file']}
+
+            r_post_photo = requests.post('https://graph.facebook.com/me/photos', params={
+                    'access_token': fb_user.access_token,
+
+                }, files=files)
 
 
-        r = requests.post('https://graph.facebook.com/me/photos', params={
-                'access_token': fb_user.access_token
-            }, files=files)
+            picture_id = r_post_photo.json()['id']
 
+            r_tag_photo = requests.post('https://graph.facebook.com/'+picture_id+'/tags', params={
+                    'access_token': fb_user.access_token,
+                    'to': '710365352'
+                })
 
-        print r
-        return 'ok'
+            print r_tag_photo.text
 
+        # return 'ok'
+        return redirect('take_photo')
 
     else:
 
-        files = {'source': open('/Users/neto/Pictures/xx.jpg', 'r')}
-
-
-        r = requests.post('https://graph.facebook.com/me/photos', params={
-                'access_token': fb_user.access_token
-            }, files=files)
-
-
-        print r
-        return 'ok'
-
-        # r = requests.get('https://graph.facebook.com/me/photos', params={
-        #         'access_token': fb_user.access_token
-        #     })
-
-        # user_accounts = r.text
-        # print user_accounts
+        form = UploadPhotoForm()
 
         return render_to_response('partidas/camera.html', {
-            # 'facebook_id': fb_user.facebook_id,
+            'facebook_id': fb_user.facebook_id,
+            'form': form
         }, context_instance=RequestContext(request))
 

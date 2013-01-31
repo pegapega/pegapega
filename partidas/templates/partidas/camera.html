@@ -13,6 +13,13 @@
         <button id="pick-image">Pick image</button>
         <div id="image-presenter"></div>
 
+
+        <form action="{% url take_photo %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit" />
+        </form>
+
         <script>
         // WebActivities
         var pickImage = document.querySelector("#pick-image");
