@@ -48,7 +48,7 @@ def alvo(request, partida_id):
                     'to': '710365352'
                 })
 
-        return redirect('take_photo')
+        return redirect('alvo', partida_id = partida.id)
 
     else:
         form = UploadPhotoForm()
