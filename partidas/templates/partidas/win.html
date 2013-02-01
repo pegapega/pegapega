@@ -4,9 +4,12 @@
 
 {% block header %}
   <style>
+  #target_container {
+    text-align: center;
+  }
   #target_photo{
-    width:90%;
-    margin:auto;
+    width:100%;
+    margin:0px;
   }
   </style>
   <h3>{{ partida.nome }}</h3>
@@ -19,7 +22,7 @@
   <p>Você lutou com bravura e dedicação, relaxe e fume um bom charuto.</p>
   <p>A paz foi restaurada.</p>
   <div id="target_container">
-    <img src="{{  STATIC_URL  }}img/animated_dimitri.gif"/>
+    <img id="target_photo" src="{{  STATIC_URL  }}img/animated_dimitri_menor.gif"/>
   </div>
   <a  id="restart" href="{% url partida_list %}" data-role="button" data-theme='b'>
       Início
