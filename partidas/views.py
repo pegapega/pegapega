@@ -2,11 +2,12 @@
 import requests
 
 from django.http import HttpResponse
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 from django.template import RequestContext
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
-from django.shortcuts import render_to_response, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 
 from forms import UploadPhotoForm
 from accounts.models import UserProfile
@@ -46,10 +47,10 @@ def take_photo(request):
 
     else:
         form = UploadPhotoForm()
-        return render_to_response('partidas/camera.html', {
+        return render(request, 'partidas/camera.html', {
             'facebook_id': fb_user.facebook_id,
             'form': form
-        }, context_instance=RequestContext(request))
+        })
 
 
 class PartidasListView(ListView):
@@ -61,3 +62,29 @@ class PartidasListView(ListView):
         queryset = queryset.filter(jogandopartida__user=self.request.user)
         print queryset.count()
         return queryset
+
+
+@csrf_exempt
+def partida_create(request):
+
+    if request.method == 'GET':
+
+        jogadores = UserProfile.objects.all()
+
+        return render(request, 'partidas/create.html', {
+                'jogadores': jogadores,
+            })
+    elif request.method == 'POST':
+
+        nome_partida = request.POST.get('partida')
+        partida = Partida.objects.create(nome=nome_partida)
+        jogadores = request.POST.getlist('jogadores')
+
+        for jogador_id in jogadores:
+            user = User.objects.get(profile__id=jogador_id)
+            JogandoPartida.objects.create(partida=partida, user=user)
+
+        return redirect('/')
+
+
+
