@@ -1,36 +1,35 @@
 {% extends "base.html" %}
+
+{% block header %}
+    <h3>Nova Partida</h3>
+{% endblock %}
+
+{% block data-url %}
+    {% url partida_create %}
+{% endblock %}
+
 {% block content %}
-    <!-- Home -->
-    <div data-role="page" id="partida_create" data-url="{% url partida_create %}">
-        <div data-theme="a" data-role="header">
-            <h3>
-                Nova Partida
-            </h3>
+    <form method="POST">
+        <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup">
+                <label for="textinput2">
+                </label>
+                <input name="partida" id="textinput2" placeholder="Nome da Partida" value="" type="text" />
+            </fieldset>
         </div>
-        <div data-role="content">
-            <form method="POST">
-                <div data-role="fieldcontain">
-                    <fieldset data-role="controlgroup">
-                        <label for="textinput2">
-                        </label>
-                        <input name="partida" id="textinput2" placeholder="Nome da Partida" value="" type="text" />
-                    </fieldset>
-                </div>
-                <div id="checkboxes1" data-role="fieldcontain">
-                    <fieldset data-role="controlgroup" data-type="vertical">
-                        <legend>
-                            Jogadores
-                        </legend>
-                        {% for jogador in jogadores %}
-                        <input id="{{ jogador.id }}" name="jogadores" value="{{ jogador.id }}" type="checkbox" />
-                        <label for="{{ jogador.id }}">
-                            {{ jogador.user.get_full_name }}
-                        </label>
-                        {% endfor %}
-                    </fieldset>
-                </div>
-                <input type="submit" data-theme="b" value="Iniciar Partida!" />
-            </form>
+        <div id="checkboxes1" data-role="fieldcontain">
+            <fieldset data-role="controlgroup" data-type="vertical">
+                <legend>
+                    Jogadores
+                </legend>
+                {% for jogador in jogadores %}
+                <input id="{{ jogador.id }}" name="jogadores" value="{{ jogador.id }}" type="checkbox" />
+                <label for="{{ jogador.id }}">
+                    {{ jogador.user.get_full_name }}
+                </label>
+                {% endfor %}
+            </fieldset>
         </div>
-    </div>
+        <input type="submit" data-theme="b" value="Iniciar Partida!" />
+    </form>
 {% endblock %}

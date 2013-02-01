@@ -32,6 +32,13 @@
         </script>
     </head>
     <body>
-        {% block content %}{% endblock %}
+        <div data-role="page" id="partida_create" data-url="{% block data-url %}{% endblock %}">
+            <div data-theme="a" data-role="header">
+                {% block header %}{% endblock %}
+            </div>
+            <div data-role="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
     </body>
 </html>

@@ -1,27 +1,26 @@
 {% extends "base.html" %}
+
+{% block data-url %}
+    {% url partida_list %}
+{% endblock %}
+
+{% block header %}
+    <h3>Partidas</h3>
+{% endblock %}
+
 {% block content %}
-<!-- Home -->
-  <div data-role="page" id="partida_list" data-url="{% url partida_list %}">
-    <div data-theme="a" data-role="header">
-      <h3>
-        Partidas
-      </h3>
-    </div>
-    <div data-role="content">
-      <ul data-role="listview" data-divider-theme="b" data-inset="false">
-        {% for object in object_list %}
-        <li data-theme="c">
-          <a href="{% url alvo object.id %}" data-transition="slide">
-            {{ object }}
-            <span class="ui-li-count">{{ object.n_jogadores }}</span>
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-      <hr/>
-      <a data-role="button" href="{% url partida_create %}" data-icon="plus" data-iconpos="left">
-        Nova Partida
+  <ul data-role="listview" data-divider-theme="b" data-inset="false">
+    {% for object in object_list %}
+    <li data-theme="c">
+      <a href="{% url alvo object.id %}" data-transition="slide">
+        {{ object }}
+        <span class="ui-li-count">{{ object.n_jogadores }}</span>
       </a>
-    </div>
-  </div>
+    </li>
+    {% endfor %}
+  </ul>
+  <hr/>
+  <a data-role="button" href="{% url partida_create %}" data-icon="plus" data-iconpos="left">
+    Nova Partida
+  </a>
 {% endblock %}
