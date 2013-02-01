@@ -60,7 +60,6 @@ class PartidasListView(ListView):
     def get_queryset(self):
         queryset = super(PartidasListView, self).get_queryset()
         queryset = queryset.filter(jogandopartida__user=self.request.user)
-        print queryset.count()
         return queryset
 
 
