@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block data-url %}{% url alvo partida.id %}{% endblock %}
+
+{% block header %}
+  <style>
+  #target_photo{
+    width:90%;
+    margin:auto;
+  }
+  </style>
+  <h3>{{ partida.nome }}</h3>
+  <h2>Vitória</h2>
+{% endblock %}
+
+{% block content %}
+<!-- Vitória -->
+  <h4>Parabéns</h4>
+  <p>Você lutou com bravura e dedicação, relaxe e fume um bom charuto.</p>
+  <p>A paz foi restaurada.</p>
+  <div id="target_container">
+    <img src="{{  STATIC_URL  }}img/animated_dimitri.gif"/>
+  </div>
+  <a  id="restart" href="#" data-role="button" data-theme='b'>
+      Início
+  </a>
+
+{% endblock %}
