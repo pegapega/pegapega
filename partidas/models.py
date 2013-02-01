@@ -33,6 +33,11 @@ class JogandoPartida(models.Model):
 class Partida(models.Model):
     nome = models.CharField(max_length=30)
 
+    def save(self, *args, **kwargs):
+        if not self.nome:
+            self.nome = '(partida sem nome)'
+        return super(Partida, self).save(*args, **kwargs)
+
     def __unicode__(self):
         return self.nome
 
