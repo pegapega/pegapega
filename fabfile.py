@@ -26,7 +26,8 @@ def deploy():
         run('./manage.py syncdb --noinput')
         run('./manage.py migrate --noinput')
 
+        run('./manage.py collectstatic --noinput')
+
     with settings(user='root'):
-        pass
         # Restart gunicorn process using supervisor
-        #run('supervisorctl restart pegapega')
+        run('supervisorctl restart pegapega')
