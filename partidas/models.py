@@ -29,3 +29,5 @@ class JogandoPartida(models.Model):
             self.codigo_partida = max_codigo + 1
         super(JogandoPartida, self).save(*args, **kwargs)
 
+    class Meta:
+        unique_together = ('partida', 'user')
