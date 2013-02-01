@@ -23,7 +23,7 @@
                 {% for jogador in jogadores %}
                 <input id="{{ jogador.id }}" name="jogadores" value="{{ jogador.id }}" type="checkbox" />
                 <label for="{{ jogador.id }}">
-                    {{ jogador.user.get_full_name }}
+                    {{ jogador.get_full_name }}
                 </label>
                 {% endfor %}
             </fieldset>
