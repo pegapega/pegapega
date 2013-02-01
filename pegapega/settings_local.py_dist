@@ -1,0 +1,19 @@
+from settings import *
+
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+# FACEBOOK API
+FACEBOOK_APP_ID = 'XXX'
+FACEBOOK_APP_SECRET = 'YYY'
+STATIC_URL = '/static/'
+DOMAIN_URL = 'http://pegapega.thumbnail.com.br'
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': cwd('pegapega.sqlite'),
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+    }
+}
