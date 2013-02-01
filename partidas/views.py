@@ -20,9 +20,9 @@ from partidas.models import Partida, JogandoPartida
 def alvo(request, partida_id):
     fb_user = UserProfile.objects.get(user=request.user)
     partida = get_object_or_404(Partida, pk=partida_id)
+    proximo_alvo = partida.proximo_alvo(request.user)
 
     if request.method == 'GET':
-        proximo_alvo = partida.proximo_alvo(request.user)
         print proximo_alvo
         return render(request, 'partidas/alvo.html', {
             'partida': partida,
@@ -40,8 +40,11 @@ def alvo(request, partida_id):
 
                 }, files=files)
 
-
             picture_id = r_post_photo.json()['id']
+            if picture_id:
+                jp = proximo_alvo.jogandopartida_set.get(partida = partida)
+                jp.vivo = False
+                jp.save()
 
             r_tag_photo = requests.post('https://graph.facebook.com/'+picture_id+'/tags', params={
                     'access_token': fb_user.access_token,
@@ -49,13 +52,6 @@ def alvo(request, partida_id):
                 })
 
         return redirect('alvo', partida_id = partida.id)
-
-    else:
-        form = UploadPhotoForm()
-        return render(request, 'partidas/camera.html', {
-            'facebook_id': fb_user.facebook_id,
-            'form': form
-        })
 
 
 class PartidasListView(ListView):
