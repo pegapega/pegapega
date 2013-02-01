@@ -44,5 +44,5 @@ class Partida(models.Model):
         jp = self.jogadores_ativos()
         n = self.n_jogadores()
         jogandopartida = user.jogandopartida_set.get(partida=self)
-        codigo_alvo = jogandopartida.codigo_partida + 1 % n
+        codigo_alvo = (jogandopartida.codigo_partida + 1) % n
         return jp[codigo_alvo].user
