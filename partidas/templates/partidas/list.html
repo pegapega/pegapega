@@ -12,7 +12,13 @@
     <li data-theme="c">
       <a href="{% url alvo object.id %}" data-transition="slide">
         {{ object }}
-        <span class="ui-li-count">{{ object.n_jogadores }}</span>
+        <span class="ui-li-count">
+            {% if object.n_jogadores > 1 %}
+                {{ object.n_jogadores }}
+            {% else %}
+                Você ganhou!
+            {% endif %}
+        </span>
       </a>
     </li>
     {% endfor %}

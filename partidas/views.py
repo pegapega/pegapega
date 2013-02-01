@@ -23,10 +23,11 @@ def alvo(request, partida_id):
     proximo_alvo = partida.proximo_alvo(request.user)
 
     if partida.n_jogadores() <= 1:
-        return render(request, 'partidas/win.html')
+        return render(request, 'partidas/win.html', {
+            'partida': partida,
+        })
 
     if request.method == 'GET':
-        print proximo_alvo
         return render(request, 'partidas/alvo.html', {
             'partida': partida,
             'alvo': proximo_alvo,
