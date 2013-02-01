@@ -85,5 +85,4 @@ def partida_create(request):
 
         return redirect('/')
 
-
-
+    return redirect('home')
