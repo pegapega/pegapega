@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^$', PartidasListView.as_view()),
     url(r'^partida/new$', direct_to_template, {'template': 'partidas/nova_partida.html'}),
     url(r'^test/$', 'partidas.views.take_photo', name='take_photo'),
+    url(r'^home$', direct_to_template, {'template': 'home/index.html'}),
 )
