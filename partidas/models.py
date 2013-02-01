@@ -35,3 +35,6 @@ class Partida(models.Model):
 
     def n_jogadores(self):
         return JogandoPartida.objects.filter(partida=self).count()
+
+    def proximo_alvo(self, user):
+        return user

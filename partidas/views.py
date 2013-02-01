@@ -17,10 +17,19 @@ from partidas.models import Partida, JogandoPartida
 # @csrf_protect
 @csrf_exempt
 @login_required
-def take_photo(request):
+def alvo(request, partida_id):
     fb_user = UserProfile.objects.get(user=request.user)
+    partida = get_object_or_404(Partida, pk=partida_id)
 
-    if request.method == 'POST':
+    if request.method == 'GET':
+        proximo_alvo = partida.proximo_alvo(request.user)
+        print proximo_alvo
+        return render(request, 'partidas/alvo.html', {
+            'partida': partida,
+            'alvo': proximo_alvo,
+        })
+
+    elif request.method == 'POST':
         form = UploadPhotoForm(request.POST, request.FILES)
         if form.is_valid():
 
@@ -32,16 +41,12 @@ def take_photo(request):
                 }, files=files)
 
 
-            print r_post_photo.json()
-
             picture_id = r_post_photo.json()['id']
 
             r_tag_photo = requests.post('https://graph.facebook.com/'+picture_id+'/tags', params={
                     'access_token': fb_user.access_token,
                     'to': '710365352'
                 })
-
-            print r_tag_photo.text
 
         return redirect('take_photo')
 

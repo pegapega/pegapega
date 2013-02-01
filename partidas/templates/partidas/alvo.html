@@ -30,11 +30,14 @@
   <div data-role="page" id="pagealvo">
     <div data-theme="a" data-role="header">
       <h3>
-        Próxima Vítima
+        {{ partida.nome }}
       </h3>
+      <h2>
+        Próxima Vítima
+      </h2>
     </div>
     <div data-role="content">
-      <h4>Nome: NOME_DO_ALVO</h4>
+      <h4>Alvo: {{ alvo.get_full_name }}</h4>
       <div id="target_container">
         <img src="{{  STATIC_URL  }}img/dimitri.png" id="target_photo"/>
         <p id="output"></p>
@@ -66,7 +69,7 @@
                     imagePresenter.appendChild(img);
                     imagePresenter.style.display = "block";
 
-                    var url = '{% url take_photo %}';
+                    var url = '{% url alvo partida.id %}';
                     var oMyForm = new FormData();
                     var oReq = new XMLHttpRequest();
                     oMyForm.append("file", this.result.blob);
