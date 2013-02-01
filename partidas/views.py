@@ -49,9 +49,7 @@ def alvo(request, partida_id):
 
             picture_id = r_post_photo.json()['id']
             if picture_id:
-                jp = proximo_alvo.jogandopartida_set.get(partida = partida)
-                jp.vivo = False
-                jp.save()
+                partida.matar(proximo_alvo)
 
             r_tag_photo = requests.post('https://graph.facebook.com/'+picture_id+'/tags', params={
                     'access_token': fb_user.access_token,

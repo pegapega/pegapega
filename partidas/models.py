@@ -62,3 +62,14 @@ class Partida(models.Model):
         for i, jogador in enumerate(self.jogadores_ativos()):
             jogador.codigo_partida = codes[i]
             jogador.save()
+
+    def matar(self, user):
+        jp = proximo_alvo.jogandopartida_set.get(partida=partida)
+        jp.vivo = False
+        jp.save()
+
+        jogadores_ativos = self.jogadores_ativos().order_by('codigo_partida')
+        for i, jogador in enumerate(jogadores_ativos):
+            jogador.codigo_partida = i
+            jogador.save()
+
