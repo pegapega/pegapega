@@ -1,26 +1,51 @@
-<!DOCTYPE html>
-<html>
-
-    <head>
-        <meta charset="utf-8">
-        <title>
-            Camera API
-        </title>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    </head>
-
-    <body>
-
-        <button id="pick-image">Pick image</button>
+{% extends "base.html" %}
+{% block content %}
+<!-- Alvo -->
+<style>
+#target_photo{
+  width:90%;
+  margin:auto;
+  transform:rotate(3deg);
+  -ms-transform:rotate(3deg); /* IE 9 */
+  -moz-transform:rotate(3deg); /* Firefox */
+  -webkit-transform:rotate(3deg); /* Safari and Chrome */
+  -o-transform:rotate(3deg); /* Opera */
+}
+#target_container{
+  position: relative;
+}
+#output{
+  position:absolute;
+  top:50px;
+  width: 100%;
+  text-align: center;
+  font-size: 3em;
+  color: #aa0000;
+}
+#output.error{
+  font-size: 1em;
+  color: #fff;
+}
+</style>
+  <div data-role="page" id="pagealvo">
+    <div data-theme="a" data-role="header">
+      <h3>
+        Próxima Vítima
+      </h3>
+    </div>
+    <div data-role="content">
+      <h4>Nome: NOME_DO_ALVO</h4>
+      <div id="target_container">
+        <img src="{{  STATIC_URL  }}img/dimitri.png" id="target_photo"/>
+        <p id="output"></p>
+      </div>
+      <a  id="pick-image" href="#" data-role="button" data-theme='b'>
+          AVISTEI O MELIANTE!
+      </a>
+    </div>
+  </div>
         <div id="image-presenter"></div>
 
-
-<!--         <form action="{% url take_photo %}" method="post" enctype="multipart/form-data">
-            {{ form.as_p }}
-            <input type="submit" value="Submit" />
-        </form>
- -->
         <script>
 
         // WebActivities
@@ -33,8 +58,8 @@
                          type: ["image/png", "image/jpg", "image/jpeg"]
                       }
                  });
-
                 pick.onsuccess = function () { 
+                    var oOutput = document.getElementById("output");
                     var img = document.createElement("img");
                     img.src = window.URL.createObjectURL(this.result.blob);
                     var imagePresenter = document.querySelector("#image-presenter");
@@ -46,20 +71,24 @@
                     var oReq = new XMLHttpRequest();
                     oMyForm.append("file", this.result.blob);
                     oReq.open("POST", url);
+                    oReq.onload = function(oEvent) {
+                      if (oReq.status == 200) {
+                        oOutput.innerHTML = "ELIMINADO!";
+                        pickImage.innerHTML = "Próxima vítima."
+                        pickImage.onclick = function () {
+                          window.location.href = window.location.href;
+                        };
+                      } else {
+                        oOutput.className = "error";
+                        oOutput.innerHTML = "Error " + oReq.status + " occurred uploading your file.<br \/>";
+                      }
+                    };
                     oReq.send(oMyForm);
-
-
-
                 };
-
                 pick.onerror = function () { 
                     alert("Can't view the image!");
                 };
             }
         }
-
         </script>
-
-    </body>
-
-</html>
+{% endblock %}
