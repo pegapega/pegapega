@@ -171,7 +171,7 @@ AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 # Default login redirects urls
 LOGIN_URL = '/accounts/login/'
 LOGOUT_URL = '/accounts/logout/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/partidas/'
 
 # Facebook common part
 FACEBOOK_SCOPE = 'email,read_friendlists,publish_stream,user_photos'

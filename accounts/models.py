@@ -9,7 +9,6 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
     facebook_id = models.CharField(max_length=130)
     access_token = models.CharField(max_length=150)
-    newsletter = models.BooleanField(default=True)
 
     def get_facebook_profile(self):
         fb_profile = urllib.urlopen(
