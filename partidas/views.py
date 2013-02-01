@@ -90,6 +90,8 @@ def partida_create(request):
             user = User.objects.get(profile__id=jogador_id)
             JogandoPartida.objects.create(partida=partida, user=user)
 
+        partida.embaralhar()
+
         return redirect('partida_list')
 
     return redirect('home')
