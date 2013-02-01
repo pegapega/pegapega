@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Home -->
+<script>
+var manifest_url = "{{  STATIC_URL  }}manifest.webapp";
+</script>
+
+<button onclick="navigator.mozApps.install(manifest_url); return false;">
+  Install this awesome app on your homescreen!
+</button>
+    <div data-role="page" id="page1">
+        <div data-role="content">
+        <h1>
+            Pega-pega <small>by Dimitrificators</small>
+        </h1>
+        <h3>
+            Sua desculpa <em>high-tech</em> para se divertir como criança
+        </h3>
+
+<div data-role="collapsible-set" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
+
+    <div data-role="collapsible" data-collapsed="false">
+    <h3>Pega-pega? Sério?</h3>
+    <p>Sim! Jogos de celulares tradicionais promovem o sedentarismo e o isolamento social. Pega-pega chegou para mudar isso.</p>
+    <p>Se você acha que treinamento militar e táticas de emboscada são coisas que não combinam com o cotidiano da vida adulta, volte para seu Marble Madness ou seu Temple Run, pois aqui a parada é séria. É tensa.</p>
+    </div>
+
+    <div data-role="collapsible">
+    <h3>1 Instale!</h3>
+    <p>Este jogo foi desenvolvido em HTML5 durante a Campus Party 6 em São Paulo e utiliza WebAPIs sendo implementadas pelo FirefoxOS. Para instalar em um aparelho compatível clique no botão abaixo.</p>
+    <a href="#" onclick="navigator.mozApps.install(manifest_url); return false;" data-role="button">Instalar</a>
+    </div>
+
+    <div data-role="collapsible">
+    <h3>2 Chame os amigos!</h3>
+    <p>
+        Convide seus amigos para jogar com você, afinal pega-pega sozinho não faz sentido.
+    <a href="#" id="share" data-role="button">Compartilhar esta página</a>
+    </p>
+    </div>
+
+    <div data-role="collapsible">
+    <h3>3 Jogue!</h3>
+    <p>
+        O bjetivo é fotografar <strong>todos</strong> os participantes (pegá-los) antes de ser fotografado.
+        Quando isto acontecer, comemore.
+        <img src="{{  STATIC_URL  }}img/dimitri.png" style="width:100%;" />
+        <a href="{% url take_photo %}" rel="external" data-transition="slide" data-role="button">
+            Login com Facebook
+        </a>
+    </p>
+    </div>
+</div>
+<script>
+var share = document.querySelector("#share");
+if (share) {
+    share.onclick = function () {
+        var sharing = new MozActivity({
+            name: "share",
+            data: {
+                //type: "url", // Possibly text/html in future versions,
+                number: 1,
+                url: window.location.href
+            }
+        });
+    }
+}
+</script>
+<!--
+                <ul data-role="listview" data-divider-theme="b" data-inset="false">
+                <li data-theme="c">
+                    <a href="#page1" data-transition="slide">
+
+                        <span class="ui-li-count">
+                            7
+                        </span>
+                    </a>
+                </li>
+                <li data-theme="c">
+                    <a href="#page1" data-transition="slide">
+                        Partida 2
+                        <span class="ui-li-count">
+                            3
+                        </span>
+                    </a>
+                </li>
+                <li data-theme="c">
+                    <a href="{% url take_photo %}" rel="external" data-transition="slide">
+                        Login
+                        <span class="ui-li-count">
+                            5
+                        </span>
+                    </a>
+                </li>
+            </ul>
+             <hr/>
+            <a data-role="button" href="#page1" data-icon="plus" data-iconpos="left">
+                Nova Partida
+            </a>
+ -->
+        </div>
+    </div>
+{% endblock %}
