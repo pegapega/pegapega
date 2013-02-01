@@ -2,6 +2,6 @@ Fabric>=1.5
 Django>=1.4
 South>=0.7.6
 gunicorn>=0.17.2
-psycopg2>=2.4.6
+#psycopg2>=2.4.6
 ipython>=0.13
 requests>=1.1.0

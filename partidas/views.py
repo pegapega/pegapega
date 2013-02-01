@@ -28,9 +28,12 @@ def alvo(request, partida_id):
         })
 
     if request.method == 'GET':
+        foto_do_alvo = 'http://graph.facebook.com/'+proximo_alvo.profile.facebook_id+'/picture?type=large'
+
         return render(request, 'partidas/alvo.html', {
             'partida': partida,
             'alvo': proximo_alvo,
+            'foto_do_alvo': foto_do_alvo
         })
 
     elif request.method == 'POST':
@@ -52,7 +55,7 @@ def alvo(request, partida_id):
 
             r_tag_photo = requests.post('https://graph.facebook.com/'+picture_id+'/tags', params={
                     'access_token': fb_user.access_token,
-                    'to': '710365352'
+                    'to': proximo_alvo.profile.facebook_id
                 })
 
         return redirect('alvo', partida_id=partida.id)
@@ -92,14 +95,15 @@ def partida_create(request):
                 'jogadores': jogadores,
             })
     elif request.method == 'POST':
-
         nome_partida = request.POST.get('partida')
         partida = Partida.objects.create(nome=nome_partida)
         jogadores = request.POST.getlist('jogadores')
 
         for jogador_id in jogadores:
-            user = User.objects.get(profile__id=jogador_id)
+            user = User.objects.get(pk=jogador_id)
             JogandoPartida.objects.create(partida=partida, user=user)
+
+        JogandoPartida.objects.create(partida=partida, user=request.user)
 
         partida.embaralhar()
 

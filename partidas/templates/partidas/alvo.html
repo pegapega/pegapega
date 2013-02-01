@@ -5,7 +5,7 @@
 {% block header %}
   <h3>{{ partida.nome }}</h3>
   <h2>Próxima Vítima</h2>
-  <a data-rel="back" href="{% url partidas_lista%}">Anterior</a>
+  <a data-rel="back" href="{% url partida_list %}">Anterior</a>
 {% endblock %}
 
 {% block content %}
@@ -38,7 +38,7 @@
   </style>
   <h4>Alvo: {{ alvo.get_full_name }}</h4>
   <div id="target_container">
-    <img src="{{  STATIC_URL  }}img/dimitri.png" id="target_photo"/>
+    <img src="{{ foto_do_alvo }}" id="target_photo"/>
     <p id="output"></p>
   </div>
   <a  id="pick-image" href="#" data-role="button" data-theme='b'>
