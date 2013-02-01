@@ -16,27 +16,12 @@
         <div id="image-presenter"></div>
 
 
-        <form action="{% url take_photo %}" method="post" enctype="multipart/form-data">
+<!--         <form action="{% url take_photo %}" method="post" enctype="multipart/form-data">
             {{ form.as_p }}
             <input type="submit" value="Submit" />
         </form>
-
+ -->
         <script>
-
-        $(document).ready(function() {
-            $('#_testButton').bind('click', function () {
-                var file = document.getElementById('_testFile').files[0]
-                var reader = new FileReader();
-                reader.onload = function () {
-                    $.ajax({
-                        url: '{% url take_photo %}',
-                        type: 'POST',
-                        data: reader.result
-                    })
-                }
-                reader.readAsBinaryString(file)
-            })
-        });
 
         // WebActivities
         var pickImage = document.querySelector("#pick-image");
@@ -46,7 +31,7 @@
                      name: "pick",
                      data: {
                          type: ["image/png", "image/jpg", "image/jpeg"]
- }
+                      }
                  });
 
                 pick.onsuccess = function () { 
@@ -55,6 +40,13 @@
                     var imagePresenter = document.querySelector("#image-presenter");
                     imagePresenter.appendChild(img);
                     imagePresenter.style.display = "block";
+
+                    var url = '{% url take_photo %}';
+                    var oMyForm = new FormData();
+                    var oReq = new XMLHttpRequest();
+                    oMyForm.append("file", this.result.blob);
+                    oReq.open("POST", url);
+                    oReq.send(oMyForm);
 
 
 
