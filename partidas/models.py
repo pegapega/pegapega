@@ -1,16 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Partida(models.Model):
-    nome = models.CharField(max_length=30)
-
-    def __unicode__(self):
-        return self.nome
-
 
 class JogandoPartida(models.Model):
     user = models.ForeignKey(User)
-    partida = models.ForeignKey(Partida)
+    partida = models.ForeignKey('Partida')
     vivo = models.BooleanField(default=True)
     codigo_partida = models.IntegerField(default=-1)
 
@@ -31,3 +25,13 @@ class JogandoPartida(models.Model):
 
     class Meta:
         unique_together = ('partida', 'user')
+
+
+class Partida(models.Model):
+    nome = models.CharField(max_length=30)
+
+    def __unicode__(self):
+        return self.nome
+
+    def n_jogadores(self):
+        return JogandoPartida.objects.filter(partida=self).count() 
