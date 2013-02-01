@@ -33,8 +33,16 @@ class Partida(models.Model):
     def __unicode__(self):
         return self.nome
 
+    def jogadores_ativos(self):
+        jp = JogandoPartida.objects.filter(partida=self, vivo=True)
+        return jp.order_by('codigo_partida')
+
     def n_jogadores(self):
-        return JogandoPartida.objects.filter(partida=self).count()
+        return self.jogadores_ativos().count()
 
     def proximo_alvo(self, user):
-        return user
+        jp = self.jogadores_ativos()
+        n = self.n_jogadores()
+        jogandopartida = user.jogandopartida_set.get(partida=self)
+        codigo_alvo = jogandopartida.codigo_partida + 1 % n
+        return jp[codigo_alvo].user
