@@ -11,7 +11,7 @@
       <ul data-role="listview" data-divider-theme="b" data-inset="false">
         {% for object in object_list %}
         <li data-theme="c">
-          <a href="#page1" data-transition="slide">
+          <a href="{% url alvo object.id %}" data-transition="slide">
             {{ object }}
             <span class="ui-li-count">{{ object.n_jogadores }}</span>
           </a>

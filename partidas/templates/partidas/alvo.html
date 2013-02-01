@@ -1,32 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- Alvo -->
-<style>
-#target_photo{
-  width:90%;
-  margin:auto;
-  transform:rotate(3deg);
-  -ms-transform:rotate(3deg); /* IE 9 */
-  -moz-transform:rotate(3deg); /* Firefox */
-  -webkit-transform:rotate(3deg); /* Safari and Chrome */
-  -o-transform:rotate(3deg); /* Opera */
-}
-#target_container{
-  position: relative;
-}
-#output{
-  position:absolute;
-  top:50px;
-  width: 100%;
-  text-align: center;
-  font-size: 3em;
-  color: #aa0000;
-}
-#output.error{
-  font-size: 1em;
-  color: #fff;
-}
-</style>
   <div data-role="page" id="pagealvo">
     <div data-theme="a" data-role="header">
       <h3>
@@ -37,6 +11,32 @@
       </h2>
     </div>
     <div data-role="content">
+      <style>
+      #target_photo{
+        width:90%;
+        margin:auto;
+        transform:rotate(3deg);
+        -ms-transform:rotate(3deg); /* IE 9 */
+        -moz-transform:rotate(3deg); /* Firefox */
+        -webkit-transform:rotate(3deg); /* Safari and Chrome */
+        -o-transform:rotate(3deg); /* Opera */
+      }
+      #target_container{
+        position: relative;
+      }
+      #output{
+        position:absolute;
+        top:50px;
+        width: 100%;
+        text-align: center;
+        font-size: 3em;
+        color: #aa0000;
+      }
+      #output.error{
+        font-size: 1em;
+        color: #fff;
+      }
+      </style>
       <h4>Alvo: {{ alvo.get_full_name }}</h4>
       <div id="target_container">
         <img src="{{  STATIC_URL  }}img/dimitri.png" id="target_photo"/>
