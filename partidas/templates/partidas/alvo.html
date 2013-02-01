@@ -64,7 +64,7 @@
               img.src = window.URL.createObjectURL(this.result.blob);
               var imagePresenter = document.querySelector("#image-presenter");
               imagePresenter.appendChild(img);
-              imagePresenter.style.display = "block";
+              imagePresenter.style.display = "none";
 
               var url = '{% url alvo partida.id %}';
               var oMyForm = new FormData();
