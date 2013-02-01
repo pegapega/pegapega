@@ -5,6 +5,7 @@
 {% block header %}
   <h3>{{ partida.nome }}</h3>
   <h2>Próxima Vítima</h2>
+  <a data-rel="back" href="{% url partidas_lista%}">Anterior</a>
 {% endblock %}
 
 {% block content %}
