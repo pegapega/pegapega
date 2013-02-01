@@ -17,7 +17,7 @@ class JogandoPartida(models.Model):
             try:
                 partida = partida.order_by("-codigo_partida")[0]
                 max_codigo = partida.codigo_partida
-            except JogandoPartida.DoesNotExist:
+            except (JogandoPartida.DoesNotExist, IndexError):
                 max_codigo = -1
 
             self.codigo_partida = max_codigo + 1
@@ -34,4 +34,4 @@ class Partida(models.Model):
         return self.nome
 
     def n_jogadores(self):
-        return JogandoPartida.objects.filter(partida=self).count() 
+        return JogandoPartida.objects.filter(partida=self).count()

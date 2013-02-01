@@ -7,6 +7,6 @@ from .views import PartidasListView
 
 urlpatterns = patterns('',
     url(r'^$', PartidasListView.as_view()),
-    url(r'^partida/new$', direct_to_template, {'template': 'partidas/nova_partida.html'}),
+    url(r'^new/$', 'partidas.views.partida_create', name='partida_create'),
     url(r'^test/$', 'partidas.views.take_photo', name='take_photo'),
 )
