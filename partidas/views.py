@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.http import HttpResponse
 
 from accounts.models import UserProfile
@@ -10,6 +10,7 @@ from forms import UploadPhotoForm
 import requests
 
 # @csrf_protect
+@csrf_exempt
 @login_required
 def take_photo(request):
     fb_user = UserProfile.objects.get(user=request.user)
