@@ -28,9 +28,12 @@ def alvo(request, partida_id):
         })
 
     if request.method == 'GET':
+        foto_do_alvo = 'http://graph.facebook.com/'+proximo_alvo.profile.facebook_id+'/picture?type=large'
+
         return render(request, 'partidas/alvo.html', {
             'partida': partida,
             'alvo': proximo_alvo,
+            'foto_do_alvo': foto_do_alvo
         })
 
     elif request.method == 'POST':
