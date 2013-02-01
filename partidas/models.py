@@ -1,3 +1,6 @@
+
+from random import shuffle
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -46,3 +49,11 @@ class Partida(models.Model):
         jogandopartida = user.jogandopartida_set.get(partida=self)
         codigo_alvo = (jogandopartida.codigo_partida + 1) % n
         return jp[codigo_alvo].user
+
+    def embaralhar(self):
+        codes = range(self.jogandopartida_set.count())
+        shuffle(codes)
+
+        for i, jogador in enumerate(self.jogadores_ativos()):
+            jogador.codigo_partida = codes[i]
+            jogador.save()
