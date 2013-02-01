@@ -68,7 +68,7 @@ class PartidasListView(ListView):
     def get_queryset(self):
         queryset = super(PartidasListView, self).get_queryset()
         queryset = queryset.filter(jogandopartida__user=self.request.user,
-                                   jogandopartida__vivo=True)
+                                   jogandopartida__vivo=True).order_by('-id')
         return queryset
 
 
