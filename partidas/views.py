@@ -75,7 +75,18 @@ def partida_create(request):
 
     if request.method == 'GET':
 
-        jogadores = UserProfile.objects.all()
+        fb_user = UserProfile.objects.get(user=request.user)
+
+        amigos_jogadores = requests.get('https://graph.facebook.com/me/friends', params={
+                'access_token': fb_user.access_token,
+                # 'fields': 'accounts'
+        })
+
+        amigos_jogadores = amigos_jogadores.json()['data']
+
+        amigos_ids = [amigo['id'] for amigo in amigos_jogadores]
+
+        jogadores = User.objects.filter(profile__facebook_id__in=amigos_ids)
 
         return render(request, 'partidas/create.html', {
                 'jogadores': jogadores,
