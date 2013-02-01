@@ -4,9 +4,7 @@
     <h3>Nova Partida</h3>
 {% endblock %}
 
-{% block data-url %}
-    {% url partida_create %}
-{% endblock %}
+{% block data-url %}{% url partida_create %}{% endblock %}
 
 {% block content %}
     <form method="POST">

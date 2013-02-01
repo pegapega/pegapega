@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
-{% block data-url %}
-  {% url alvo partida.id %}
-{% endblock %}
+{% block data-url %}{% url alvo partida.id %}{% endblock %}
 
 {% block header %}
   <h3>{{ partida.nome }}</h3>

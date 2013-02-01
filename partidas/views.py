@@ -22,6 +22,9 @@ def alvo(request, partida_id):
     partida = get_object_or_404(Partida, pk=partida_id)
     proximo_alvo = partida.proximo_alvo(request.user)
 
+    if partida.n_jogadores() <= 1:
+        return render(request, 'partidas/win.html')
+
     if request.method == 'GET':
         print proximo_alvo
         return render(request, 'partidas/alvo.html', {
@@ -51,7 +54,7 @@ def alvo(request, partida_id):
                     'to': '710365352'
                 })
 
-        return redirect('alvo', partida_id = partida.id)
+        return redirect('alvo', partida_id=partida.id)
 
 
 class PartidasListView(ListView):
