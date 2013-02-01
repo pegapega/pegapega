@@ -1,13 +1,17 @@
-from django.shortcuts import render_to_response, redirect, get_object_or_404
+
+import requests
+
+from django.http import HttpResponse
+from django.views.generic import ListView
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
-from django.http import HttpResponse
+from django.shortcuts import render_to_response, redirect, get_object_or_404
 
-from accounts.models import UserProfile
 from forms import UploadPhotoForm
+from accounts.models import UserProfile
+from partidas.models import Partida, JogandoPartida
 
-import requests
 
 # @csrf_protect
 @csrf_exempt
@@ -47,3 +51,13 @@ def take_photo(request):
             'form': form
         }, context_instance=RequestContext(request))
 
+
+class PartidasListView(ListView):
+    model = Partida
+    template_name = 'partidas/list.html'
+
+    def get_queryset(self):
+        queryset = super(PartidasListView, self).get_queryset()
+        queryset = queryset.filter(jogandopartida__user=self.request.user)
+        print queryset.count()
+        return queryset
