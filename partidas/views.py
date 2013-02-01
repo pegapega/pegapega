@@ -52,7 +52,7 @@ def alvo(request, partida_id):
 
             r_tag_photo = requests.post('https://graph.facebook.com/'+picture_id+'/tags', params={
                     'access_token': fb_user.access_token,
-                    'to': '710365352'
+                    'to': proximo_alvo.profile.facebook_id
                 })
 
         return redirect('alvo', partida_id=partida.id)
