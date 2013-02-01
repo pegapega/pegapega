@@ -64,6 +64,7 @@ class PartidasListView(ListView):
 
 
 @csrf_exempt
+@login_required
 def partida_create(request):
 
     if request.method == 'GET':
