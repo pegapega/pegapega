@@ -58,6 +58,7 @@
                    type: ["image/png", "image/jpg", "image/jpeg"]
                     }
            });
+           pickImage.style.opacity = 0.5;
           pick.onsuccess = function () { 
               var oOutput = document.getElementById("output");
               var img = document.createElement("img");
@@ -75,6 +76,7 @@
                 if (oReq.status == 200) {
                   oOutput.innerHTML = "ELIMINADO!";
                   document.querySelector('#pick-image span.ui-btn-text').innerHTML = "Próxima vítima";
+                  pickImage.style.opacity = 1;
                   pickImage.onclick = function () {
                     window.location.href = window.location.href;
                   };
