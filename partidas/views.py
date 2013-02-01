@@ -92,13 +92,12 @@ def partida_create(request):
                 'jogadores': jogadores,
             })
     elif request.method == 'POST':
-
         nome_partida = request.POST.get('partida')
         partida = Partida.objects.create(nome=nome_partida)
         jogadores = request.POST.getlist('jogadores')
 
         for jogador_id in jogadores:
-            user = User.objects.get(profile__id=jogador_id)
+            user = User.objects.get(pk=jogador_id)
             JogandoPartida.objects.create(partida=partida, user=user)
 
         JogandoPartida.objects.create(partida=partida, user=request.user)
