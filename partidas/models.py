@@ -64,7 +64,7 @@ class Partida(models.Model):
             jogador.save()
 
     def matar(self, user):
-        jp = proximo_alvo.jogandopartida_set.get(partida=partida)
+        jp = user.jogandopartida_set.get(partida=self)
         jp.vivo = False
         jp.save()
 
