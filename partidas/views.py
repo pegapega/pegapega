@@ -14,7 +14,6 @@ from accounts.models import UserProfile
 from partidas.models import Partida, JogandoPartida
 
 
-# @csrf_protect
 @csrf_exempt
 @login_required
 def alvo(request, partida_id):
