@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 import requests
 
 from django.http import HttpResponse
@@ -42,9 +42,11 @@ def alvo(request, partida_id):
 
             files = {'source': request.FILES['file']}
 
+            mensagem = request.user.get_full_name()+u' acaba de pegar '+proximo_alvo.get_full_name()+u'. Quer jogar também? http://pegapega.seocam.com'
+
             r_post_photo = requests.post('https://graph.facebook.com/me/photos', params={
                     'access_token': fb_user.access_token,
-
+                    'name': mensagem,
                 }, files=files)
 
             picture_id = r_post_photo.json()['id']
